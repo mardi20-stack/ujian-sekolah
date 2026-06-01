@@ -3,133 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSmart - Sistem Ujian Terpadu</title>
+    <title>Panel Manajemen Ujian - Kurikulum Merdeka</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans">
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 md:p-8">
 
-    <div class="p-8">
-        <h1 class="text-3xl font-bold mb-6 text-indigo-400">Pusat Ujian Online</h1>
+    <div class="bg-white w-full max-w-3xl rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white text-center md:text-left md:flex items-center justify-between">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold flex items-center justify-center md:justify-start gap-2">
+                    <i class="fa-solid fa-graduation-cap"></i> Portal Asesmen Guru
+                </h1>
+                <p class="text-blue-100 text-xs md:text-sm mt-1">Pembuatan Paket Ujian Baru Kurikulum Merdeka</p>
+            </div>
+            <span class="inline-block mt-3 md:mt-0 bg-blue-500/30 text-blue-200 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-400/20">
+                TA 2026/2027
+            </span>
+        </div>
 
-        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl mb-6">
-            <h3 class="text-xl font-bold mb-4 text-indigo-400 border-b border-slate-700 pb-2">Input Link Google Form</h3>
+        <form class="p-6 md:p-8 space-y-6" onsubmit="event.preventDefault(); alert('Ujian Berhasil Dikirim!');">
             
-            <form action="" method="POST" onsubmit="alert('Konfigurasi berhasil disimpan!'); return false;">
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-slate-300 mb-1">Nama Mata Pelajaran</label>
-                    <select name="mapel" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="">-- Pilih Mata Pelajaran --</option>
-                        
-                        <optgroup label="Mata Pelajaran Umum">
-                            <option value="Pendidikan Agama dan Budi Pekerti">Pendidikan Agama dan Budi Pekerti</option>
-                            <option value="Pendidikan Pancasila dan Kewarganegaraan (PPKn)">Pendidikan Pancasila dan Kewarganegaraan (PPKn)</option>
-                            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
-                            <option value="Matematika">Matematika</option>
-                            <option value="Ilmu Pengetahuan Alam (IPA)">Ilmu Pengetahuan Alam (IPA)</option>
-                            <option value="Ilmu Pengetahuan Sosial (IPS)">Ilmu Pengetahuan Sosial (IPS)</option>
-                            <option value="Bahasa Inggris">Bahasa Inggris</option>
-                        </optgroup>
-
-                        <optgroup label="Seni & Keterampilan">
-                            <option value="Seni Budaya (Rupa/Musik/Tari/Teater)">Seni Budaya (Rupa/Musik/Tari/Teater)</option>
-                            <option value="Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)">Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)</option>
-                            <option value="Prakarya dan Kewirausahaan">Prakarya dan Kewirausahaan</option>
-                            <option value="Informatika / TIK">Informatika / TIK</option>
-                        </optgroup>
-
-                        <optgroup label="Muatan Lokal">
-                            <option value="Bahasa Daerah">Bahasa Daerah</option>
-                            <option value="Bimbingan Konseling (BK)">Bimbingan Konseling (BK)</option>
-                        </optgroup>
-                    </select>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Judul Ujian</label>
+                    <input type="text" placeholder="Contoh: Asesmen Sumatif Tengah Semester" required
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm">
                 </div>
-
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-slate-300 mb-1">Alokasi Waktu Mengerjakan (Menit)</label>
-                    <input type="number" name="durasi_menit" placeholder="Contoh: 90" min="1" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
-
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-slate-300 mb-1">Target Kelas Ujian</label>
-                    <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 space-y-3">
-                        
-                        <div class="flex flex-wrap gap-4 items-center border-b border-slate-800 pb-2">
-                            <span class="text-xs font-bold text-indigo-400 w-16">Kelas VII:</span>
-                            <label class="inline-flex items-center text-sm text-slate-300 cursor-pointer">
-                                <input type="checkbox" value="VII-A" class="kelas-checkbox mr-1.5 rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-indigo-500" onchange="renderLinkDinamis()"> VII-A
-                            </label>
-                            <label class="inline-flex items-center text-sm text-slate-300 cursor-pointer">
-                                <input type="checkbox" value="VII-B" class="kelas-checkbox mr-1.5 rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-indigo-500" onchange="renderLinkDinamis()"> VII-B
-                            </label>
-                        </div>
-
-                        <div class="flex flex-wrap gap-4 items-center border-b border-slate-800 pb-2">
-                            <span class="text-xs font-bold text-emerald-400 w-16">Kelas VIII:</span>
-                            <label class="inline-flex items-center text-sm text-slate-300 cursor-pointer">
-                                <input type="checkbox" value="VIII-A" class="kelas-checkbox mr-1.5 rounded bg-slate-800 border-slate-700 text-emerald-600 focus:ring-emerald-500" onchange="renderLinkDinamis()"> VIII-A
-                            </label>
-                            <label class="inline-flex items-center text-sm text-slate-300 cursor-pointer">
-                                <input type="checkbox" value="VIII-B" class="kelas-checkbox mr-1.5 rounded bg-slate-800 border-slate-700 text-emerald-600 focus:ring-emerald-500" onchange="renderLinkDinamis()"> VIII-B
-                            </label>
-                        </div>
-
-                        <div class="flex flex-wrap gap-4 items-center">
-                            <span class="text-xs font-bold text-amber-400 w-16">Kelas IX:</span>
-                            <label class="inline-flex items-center text-sm text-slate-300 cursor-pointer">
-                                <input type="checkbox" value="IX-A" class="kelas-checkbox mr-1.5 rounded bg-slate-800 border-slate-700 text-amber-600 focus:ring-amber-500" onchange="renderLinkDinamis()"> IX-A
-                            </label>
-                            <label class="inline-flex items-center text-sm text-slate-300 cursor-pointer">
-                                <input type="checkbox" value="IX-B" class="kelas-checkbox mr-1.5 rounded bg-slate-800 border-slate-700 text-amber-600 focus:ring-amber-500" onchange="renderLinkDinamis()"> IX-B
-                            </label>
-                        </div>
-
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Durasi Ujian</label>
+                    <div class="relative flex items-center">
+                        <input type="number" placeholder="90" min="1" required
+                            class="w-full pl-4 pr-16 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm text-center font-semibold">
+                        <span class="absolute right-3 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-md border border-slate-200/60">Menit</span>
                     </div>
                 </div>
-
-                <div id="wadah-link-google-form"></div>
-
-                <button type="submit" class="w-full mt-4 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2.5 px-4 rounded-lg transition duration-200 shadow-lg">
-                    Simpan Jadwal Ujian
-                </button>
-            </form>
-        </div>
-
-        <div class="mt-10 bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
-            <h2 class="text-xl font-semibold mb-4 text-indigo-400">Simulator Monitor</h2>
-            <div id="monitor-screen" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <p class="text-slate-400 text-sm">Belum ada aktivitas ujian yang dipantau.</p>
             </div>
-        </div>
 
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Mata Pelajaran Kurikulum Merdeka</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-book-bookmark text-sm"></i>
+                    </div>
+                    <select required class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm appearance-none bg-white text-slate-700 cursor-pointer">
+                        <option value="" disabled selected>-- Pilih Mata Pelajaran --</option>
+                        <optgroup label="Umum">
+                            <option>Pendidikan Agama dan Budi Pekerti</option>
+                            <option>Pendidikan Pancasila (PPKn)</option>
+                            <option>Bahasa Indonesia</option>
+                            <option>Matematika</option>
+                            <option>Ilmu Pengetahuan Alam (IPA)</option>
+                            <option>Ilmu Pengetahuan Sosial (IPS)</option>
+                            <option>Bahasa Inggris</option>
+                            <option>Informatika</option>
+                        </optgroup>
+                        <optgroup label="Seni & Prakarya">
+                            <option>Seni Musik</option>
+                            <option>Seni Rupa</option>
+                            <option>Seni Teater</option>
+                            <option>Seni Tari</option>
+                            <option>Prakarya</option>
+                        </optgroup>
+                        <optgroup label="Lainnya">
+                            <option>Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)</option>
+                            <option>Muatan Lokal / Bahasa Daerah</option>
+                        </optgroup>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-400 text-xs">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Link Google Form</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-500">
+                        <i class="fa-brands fa-google-drive text-sm"></i>
+                    </div>
+                    <input type="url" placeholder="https://docs.google.com/forms/d/..." required
+                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition text-sm text-blue-600 font-mono placeholder:font-sans">
+                </div>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <label class="block text-sm font-semibold text-slate-700">Kelas Tujuan</label>
+                    <button type="button" onclick="toggleSemuaKelas()" id="btnPilihSemua" class="text-xs font-semibold text-blue-600 hover:text-blue-700 transition flex items-center gap-1 bg-blue-50 px-2.5 py-1 rounded-md">
+                        <i class="fa-regular fa-square-check"></i> Pilih Semua Kelas
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    <label class="kelas-badge flex items-center justify-center py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none text-center text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                        <input type="checkbox" class="hidden kelas-cb" value="VII.A"> VII.A
+                    </label>
+                    <label class="kelas-badge flex items-center justify-center py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none text-center text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                        <input type="checkbox" class="hidden kelas-cb" value="VII.B"> VII.B
+                    </label>
+                    <label class="kelas-badge flex items-center justify-center py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none text-center text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                        <input type="checkbox" class="hidden kelas-cb" value="VIII.A"> VIII.A
+                    </label>
+                    <label class="kelas-badge flex items-center justify-center py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none text-center text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                        <input type="checkbox" class="hidden kelas-cb" value="VIII.B"> VIII.B
+                    </label>
+                    <label class="kelas-badge flex items-center justify-center py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none text-center text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                        <input type="checkbox" class="hidden kelas-cb" value="IX.A"> IX.A
+                    </label>
+                    <label class="kelas-badge flex items-center justify-center py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none text-center text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                        <input type="checkbox" class="hidden kelas-cb" value="IX.B"> IX.B
+                    </label>
+                </div>
+            </div>
+
+            <div class="bg-amber-50/50 border border-amber-200/60 p-4 rounded-xl flex items-center justify-between">
+                <div class="flex items-start gap-3">
+                    <div class="p-2 bg-amber-100 text-amber-700 rounded-lg text-sm shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-800">Proteksi Keamanan Aktif</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Sistem Anti-Nyontek akan mendeteksi kecurangan siswa saat berpindah tab.</p>
+                    </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                </label>
+            </div>
+
+            <div class="pt-2">
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2 text-sm md:text-base">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> Mulai & Kirim Ujian
+                </button>
+            </div>
+
+        </form>
     </div>
 
     <script>
-    function renderLinkDinamis() {
-        const wadah = document.getElementById('wadah-link-google-form');
-        wadah.innerHTML = ''; 
-        
-        const kelasTerpilih = document.querySelectorAll('.kelas-checkbox:checked');
-        
-        if (kelasTerpilih.length > 0) {
-            const boxWrapper = document.createElement('div');
-            boxWrapper.className = "bg-slate-950 p-4 rounded-lg mt-4 border border-slate-700 border-l-4 border-l-teal-500";
-            boxWrapper.innerHTML = '<p class="text-xs font-bold text-teal-400 mb-2">Masukkan Link Google Form untuk Tiap Kelas:</p>';
-            
-            kelasTerpilih.forEach(checkbox => {
-                const grupInput = document.createElement('div');
-                grupInput.className = "mb-3";
-                grupInput.innerHTML = `
-                    <label class="block text-xs text-slate-400 mb-1">Link Form <strong>Kelas ${checkbox.value}</strong>:</label>
-                    <input type="url" name="link_google_form[${checkbox.value}]" placeholder="Paste link Google Form kelas ${checkbox.value}..." required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs text-slate-100 focus:ring-1 focus:ring-teal-500 focus:border-teal-500">
-                `;
-                boxWrapper.appendChild(grupInput);
+        // Logika pewarnaan dinamis untuk tombol kelas saat diklik
+        const badges = document.querySelectorAll('.kelas-badge');
+        badges.forEach(badge => {
+            const checkbox = badge.querySelector('.kelas-cb');
+            checkbox.addEventListener('change', () => {
+                if(checkbox.checked) {
+                    badge.classList.remove('bg-slate-50', 'border-slate-200', 'text-slate-600', 'hover:bg-slate-100');
+                    badge.classList.add('bg-blue-600', 'border-blue-600', 'text-white', 'hover:bg-blue-700');
+                } else {
+                    badge.classList.add('bg-slate-50', 'border-slate-200', 'text-slate-600', 'hover:bg-slate-100');
+                    badge.classList.remove('bg-blue-600', 'border-blue-600', 'text-white', 'hover:bg-blue-700');
+                }
             });
+        });
+
+        // Logika tombol "Pilih Semua Kelas"
+        let semuaTerpilih = false;
+        function toggleSemuaKelas() {
+            semuaTerpilih = !semuaTerpilih;
+            const btn = document.getElementById('btnPilihSemua');
             
-            wadah.appendChild(boxWrapper);
+            badges.forEach(badge => {
+                const checkbox = badge.querySelector('.kelas-cb');
+                if(checkbox.checked !== semuaTerpilih) {
+                    checkbox.checked = semuaTerpilih;
+                    checkbox.dispatchEvent(new Event('change'));
+                }
+            });
+
+            btn.innerHTML = semuaTerpilih 
+                ? '<i class="fa-regular fa-square"></i> Batalkan Semua' 
+                : '<i class="fa-regular fa-square-check"></i> Pilih Semua Kelas';
         }
-    }
     </script>
 </body>
 </html>
