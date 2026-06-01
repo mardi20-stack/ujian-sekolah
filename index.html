@@ -142,45 +142,58 @@
                 </label>
             </div>
 
-   <div class="pt-4 border-t border-slate-100">
-    <div id="hasil-link" class="mb-4 p-4 bg-white border border-slate-200 rounded-lg shadow-sm" style="display: none;">
-        <p class="text-sm font-medium text-slate-700 mb-2">👉 Salin link ujian ini dan kirim ke WhatsApp Siswa:</p>
-        <div class="flex gap-2">
-            <input type="text" id="link-siswa" readonly class="w-full p-2 text-xs border border-slate-300 rounded bg-slate-50 text-slate-600" onclick="this.select()">
-            <button type="button" onclick="salinTeksLink()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded font-medium">Salin</button>
-        </div>
-    </div>
-
-    <button type="button" onclick="buatLinkUjian()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-        </svg>
-        Mulai & Kirim Ujian
-    </button>
-</div>
-</form>
-</div>
-    <script>
-        // --- KODE LOGIKA PARAMETER URL UNTUK SISWA & GURU ---
-
-function buatLinkUjian() {
-    const baseUrl = window.location.origin + window.location.pathname;
-    const linkKhusus = ${baseUrl}?v=2;
+   // --- KODE LOGIKA PARAMETER URL UNTUK SISWA & GURU ---
     
-    document.getElementById('hasil-link').style.display = 'block';
-    document.getElementById('link-siswa').value = linkKhusus;
-    
-    alert("Ujian Berhasil Dikirim!");
-}
+    function buatLinkUjian() {
+        const baseUrl = window.location.origin + window.location.pathname.replace('index.html', '') + 'siswa.html';
+        const formUrl = document.getElementById('form-url').value.trim();
+        const mapel = document.getElementById('mapel').value;
+        
+        const kelasCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        const kelasList = Array.from(kelasCheckboxes).map(cb => cb.value);
 
-function salinTeksLink() {
-    const copyText = document.getElementById("link-siswa");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
-    alert("Link berhasil disalin! Siap dikirim ke WhatsApp Kelas VII.A.");
-}
+        if (!formUrl) {
+            alert('Silakan masukkan Link Google Form terlebih dahulu!');
+            return;
+        }
+        if (!mapel) {
+            alert('Silakan pilih Mata Pelajaran terlebih dahulu!');
+            return;
+        }
+        if (kelasList.length === 0) {
+            alert('Silakan pilih minimal satu Kelas Tujuan!');
+            return;
+        }
 
+        // Generate Link enkripsi sederhana untuk siswa
+        const encryptedParam = btoa(encodeURIComponent(JSON.stringify({
+            f: formUrl,
+            m: mapel,
+            k: kelasList.join(',')
+        })));
+
+        const linkFinal = ${baseUrl}?v=${encryptedParam};
+        
+        // Tampilkan kotak hasil link
+        document.getElementById('link-siswa').value = linkFinal;
+        document.getElementById('hasil-link').style.display = 'block';
+        
+        alert('Ujian Berhasil Dikirim!');
+    }
+
+    function salinTeksLink() {
+        const linkInput = document.getElementById('link-siswa');
+        linkInput.select();
+        linkInput.setSelectionRange(0, 99999); // Untuk perangkat mobile
+
+        try {
+            navigator.clipboard.writeText(linkInput.value);
+            alert('Link berhasil disalin! Silakan paste (Ctrl+V) ke WhatsApp Siswa.');
+        } catch (err) {
+            document.execCommand('copy');
+            alert('Link berhasil disalin!');
+        }
+    }
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const versi = urlParams.get('v');
